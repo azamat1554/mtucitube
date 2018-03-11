@@ -1,11 +1,12 @@
 .videoCentered {
-    width: 720px;
     margin: auto;
     position: absolute;
-    top: 0;
-    bottom: 0;
+    top: 150px;
     left: 0;
     right: 0;
+    width: 100%;
+    max-height: calc(100% - 150px);
+    min-height: 300px;
 }
 
 h1 {
@@ -24,6 +25,7 @@ h1 {
     z-index:  999;
     box-shadow: 0 1px 5px grey;
     top: 0;
+    left: 0;
 }
 
 div.gallery {
@@ -46,7 +48,6 @@ div.gallery img {
     -webkit-transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
-}
 }
 
 div.desc {
