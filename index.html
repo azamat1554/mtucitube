@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MtuciTube</title>
+
+    <link rel="shortcut icon" type="image/png" href="webapp/images/favicon.ico"/>
+    <link rel="stylesheet" href="webapp/styles.css">
+</head>
+<body>
+<div class="header-container">
+    <div style="width: 900px; margin:  0 auto;">
+        <img src="webapp/images/logo.png" alt="МТУСИ" align="left"
+             style="padding-left:7%;padding: 23px;border:0px;">
+        <h1>MTUCI</h1>
+        <h1 style="
+    display:  inline-block;
+    background-color:  cornflowerblue;
+    border-radius:  30px;
+    padding: 0 10px;
+    ">TUBE</h1></div>
+</div>
+
+<script src="webapp/js/hls.js"></script>
+<video class="videoCentered" id="video" controls></video>
+<script>
+    var pathTo = 'webapp/video/master.m3u8';
+    if (Hls.isSupported()) {
+        var video = document.getElementById('video');
+        var hls = new Hls();
+        hls.loadSource(pathTo);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, function () {
+            video.play();
+        });
+    }
+    // hls.js is not supported on platforms that do not have Media Source Extensions (MSE) enabled.
+    // When the browser has built-in HLS support (check using `canPlayType`), we can provide an HLS manifest (i.e. .m3u8 URL) directly to the video element throught the `src` property.
+    // This is using the built-in support of the plain video element, without using hls.js.
+    else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = pathTo;
+        video.addEventListener('canplay', function () {
+            video.play();
+        });
+    }
+</script>
+</body>
+</html>
